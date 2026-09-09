@@ -15,22 +15,28 @@
       box-sizing: border-box;
     }
 
+    html,
     body {
-      align-items: flex-start;
-      background: #0a0000;
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      min-height: 100%;
+      background: transparent !important;
+    }
+
+    body {
       font-family: 'Rajdhani', sans-serif;
       color: #e0e0e0;
-      min-height: 100vh;
       display: flex;
       justify-content: center;
-      padding: 0;
+      align-items: flex-start;
     }
 
     .page {
-      margin: 0 auto;
       width: 100%;
       max-width: 560px;
-      background: #100202;
+      margin: 0 auto;
+      background: transparent !important;
     }
 
     /* =========================
@@ -40,14 +46,13 @@
     .banner {
       background: linear-gradient(
         135deg,
-        #0a0000 0%,
-        #1c0005 50%,
-        #0a0000 100%
+        rgba(10,0,0,0.92) 0%,
+        rgba(28,0,5,0.92) 50%,
+        rgba(10,0,0,0.92) 100%
       );
-
       padding: 28px 20px 22px;
       text-align: center;
-      border-bottom: 2px solid #3a0a10;
+      border-bottom: 2px solid rgba(58,10,16,0.9);
       position: relative;
       overflow: hidden;
     }
@@ -76,7 +81,6 @@
       color: #ff6b6b;
       text-transform: uppercase;
       margin-bottom: 10px;
-
       animation:
         flickerBadge 4s linear infinite,
         slideUp 0.5s ease both;
@@ -89,9 +93,7 @@
       letter-spacing: 2px;
       color: #fff;
       margin-bottom: 4px;
-
       text-shadow: 0 0 20px rgba(220,20,40,0.3);
-
       animation:
         glitchH1 5s ease-in-out infinite,
         scaleIn 0.6s ease 0.1s both;
@@ -208,13 +210,13 @@
     ========================= */
 
     .promo-title {
-      background: #0d0000;
+      background: rgba(13,0,0,0.90);
       padding: 14px 20px;
       display: flex;
       align-items: center;
       justify-content: center;
       gap: 8px;
-      border-bottom: 1px solid #2a0a10;
+      border-bottom: 1px solid rgba(42,10,16,0.9);
     }
 
     .promo-title span {
@@ -235,12 +237,13 @@
       display: flex;
       flex-direction: column;
       gap: 10px;
+      background: transparent !important;
     }
 
     .card {
-      background: #180304;
+      background: rgba(24,3,4,0.92);
       border-radius: 10px;
-      border: 1px solid #2e0a10;
+      border: 1px solid rgba(46,10,16,0.9);
       overflow: hidden;
     }
 
@@ -249,8 +252,8 @@
       display: flex;
       align-items: center;
       gap: 8px;
-      border-bottom: 1px solid #2e0a10;
-      background: #1e0406;
+      border-bottom: 1px solid rgba(46,10,16,0.9);
+      background: rgba(30,4,6,0.94);
     }
 
     .card-header .icon {
@@ -327,7 +330,7 @@
     ========================= */
 
     .note-box {
-      background: #1a0205;
+      background: rgba(26,2,5,0.90);
       border: 1px solid #3a0a10;
       border-left: 3px solid #c0001a;
       border-radius: 0 6px 6px 0;
@@ -343,7 +346,7 @@
     }
 
     .warn-box {
-      background: #1a0a00;
+      background: rgba(26,10,0,0.90);
       border: 1px solid #3a1a00;
       border-left: 3px solid #ff6600;
       border-radius: 0 6px 6px 0;
@@ -368,7 +371,7 @@
       color: #777;
       text-align: center;
       line-height: 1.5;
-      background: #120202;
+      background: rgba(18,2,2,0.90);
     }
 
     .footer-note strong {
@@ -378,7 +381,8 @@
     .brand-bar {
       text-align: center;
       padding: 18px 20px 22px;
-      border-top: 1px solid #2a0a10;
+      border-top: 1px solid rgba(42,10,16,0.8);
+      background: transparent !important;
     }
 
     .brand-name {
@@ -401,19 +405,18 @@
 
     .cta-wrapper {
       padding: 0 14px 14px;
+      background: transparent !important;
     }
 
     .cta-btn {
       display: block;
       width: 100%;
       padding: 17px;
-
       background: linear-gradient(
         135deg,
         #8a0012,
         #c0001a
       );
-
       color: #fff;
       font-family: 'Bebas Neue', sans-serif;
       font-size: 22px;
@@ -425,7 +428,6 @@
       position: relative;
       overflow: hidden;
       transition: background 0.2s;
-
       box-shadow: 0 4px 20px rgba(192,0,26,0.4);
     }
 
@@ -436,14 +438,12 @@
       left: -100%;
       width: 60%;
       height: 100%;
-
       background: linear-gradient(
         90deg,
         transparent,
         rgba(255,255,255,0.15),
         transparent
       );
-
       transform: skewX(-20deg);
       transition: left 0.4s;
     }
@@ -650,48 +650,17 @@
 
   <main class="page">
 
-    <!-- =========================
-         BANNER
-    ========================== -->
-
     <section class="banner">
 
       <div class="particles">
 
-        <div
-          class="particle"
-          style="background:rgba(220,20,40,0.7);">
-        </div>
-
-        <div
-          class="particle"
-          style="background:rgba(220,20,40,0.7);">
-        </div>
-
-        <div
-          class="particle"
-          style="background:rgba(255,80,80,0.5);">
-        </div>
-
-        <div
-          class="particle"
-          style="background:rgba(220,20,40,0.7);">
-        </div>
-
-        <div
-          class="particle"
-          style="background:rgba(220,20,40,0.7);">
-        </div>
-
-        <div
-          class="particle"
-          style="background:rgba(220,20,40,0.7);">
-        </div>
-
-        <div
-          class="particle"
-          style="background:rgba(255,255,255,0.25);">
-        </div>
+        <div class="particle" style="background:rgba(220,20,40,0.7);"></div>
+        <div class="particle" style="background:rgba(220,20,40,0.7);"></div>
+        <div class="particle" style="background:rgba(255,80,80,0.5);"></div>
+        <div class="particle" style="background:rgba(220,20,40,0.7);"></div>
+        <div class="particle" style="background:rgba(220,20,40,0.7);"></div>
+        <div class="particle" style="background:rgba(220,20,40,0.7);"></div>
+        <div class="particle" style="background:rgba(255,255,255,0.25);"></div>
 
       </div>
 
@@ -719,26 +688,16 @@
 
     </section>
 
-    <!-- SHIMMER -->
-
     <div
       class="banner-shimmer"
       style="background:linear-gradient(90deg, transparent, rgba(220,20,40,0.9), transparent);">
     </div>
 
-    <!-- TITLE -->
-
     <div class="promo-title">
       <span>🎰 %20 JEST BONUSU 🎰</span>
     </div>
 
-    <!-- =========================
-         CONTENT
-    ========================== -->
-
     <section class="content">
-
-      <!-- PROMOSYON HAKKINDA -->
 
       <article class="card">
 
@@ -794,8 +753,6 @@
         </div>
       </article>
 
-      <!-- BONUS HESAPLAMA -->
-
       <article class="card">
 
         <div class="card-header">
@@ -834,8 +791,6 @@
 
         </div>
       </article>
-
-      <!-- ÇEVRİM VE ÇEKİM -->
 
       <article class="card">
 
@@ -891,8 +846,6 @@
         </div>
       </article>
 
-      <!-- ÖNEMLİ KURALLAR -->
-
       <article class="card">
 
         <div class="card-header">
@@ -930,8 +883,6 @@
         </div>
       </article>
 
-      <!-- GENEL KURALLAR -->
-
       <article class="card">
 
         <div class="card-header">
@@ -949,10 +900,6 @@
 
     </section>
 
-    <!-- =========================
-         LIVE SUPPORT
-    ========================== -->
-
     <div class="cta-wrapper">
 
       <a
@@ -964,10 +911,6 @@
       </a>
 
     </div>
-
-    <!-- =========================
-         BRAND
-    ========================== -->
 
     <footer class="brand-bar">
 
