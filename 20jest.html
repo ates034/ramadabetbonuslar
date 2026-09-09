@@ -1,482 +1,987 @@
-<style type="text/css">@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Rajdhani:wght@400;600;700&display=swap');
-
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-
-  body {
-    align-items: flex-start;
-    background: #0a0000;
-    font-family: 'Rajdhani', sans-serif;
-    color: #e0e0e0;
-    min-height: 100vh;
-    display: flex;
-    justify-content: center;
-    padding: 0;
-  }
-
-  .page {
-    margin: 0 auto;
-    width: 100%;
-    max-width: 560px;
-    background: #100202;
-  }
-
-  .banner {
-    background: linear-gradient(135deg, #0a0000 0%, #1c0005 50%, #0a0000 100%);
-    padding: 28px 20px 22px;
-    text-align: center;
-    border-bottom: 2px solid #3a0a10;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .banner::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: radial-gradient(ellipse at 50% 0%, rgba(192,0,26,0.18) 0%, transparent 65%);
-    pointer-events: none;
-  }
-
-  .banner-badge {
-    display: inline-block;
-    background: rgba(192,0,26,0.15);
-    border: 1px solid rgba(192,0,26,0.4);
-    border-radius: 4px;
-    padding: 4px 14px;
-    font-size: 10px;
-    font-weight: 700;
-    letter-spacing: 3px;
-    color: #ff6b6b;
-    text-transform: uppercase;
-    margin-bottom: 10px;
-    animation: flickerBadge 4s linear infinite, slideUp 0.5s ease both;
-  }
-
-  .banner h1 {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 52px;
-    line-height: 1;
-    letter-spacing: 2px;
-    color: #fff;
-    margin-bottom: 4px;
-    text-shadow: 0 0 20px rgba(220,20,40,0.3);
-    animation: glitchH1 5s ease-in-out infinite, scaleIn 0.6s ease 0.1s both;
-  }
-
-  .banner h1 span {
-    color: #ff3a3a;
-    text-shadow: 0 0 16px rgba(255,50,50,0.5);
-    animation: textColorCycle 2.5s ease-in-out infinite;
-  }
-
-  .banner-sub {
-    font-size: 13px;
-    font-weight: 700;
-    letter-spacing: 3px;
-    color: #aaa;
-    text-transform: uppercase;
-    animation: slideUp 0.7s ease 0.3s both;
-    display: inline-block;
-  }
-
-  .promo-title {
-    background: #0d0000;
-    padding: 14px 20px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
-    border-bottom: 1px solid #2a0a10;
-  }
-
-  .promo-title span {
-    font-size: 13px;
-    font-weight: 700;
-    letter-spacing: 2px;
-    color: #c0001a;
-    text-transform: uppercase;
-    text-align: center;
-  }
-
-  .content {
-    padding: 14px 14px 30px;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-  }
-
-  .card {
-    background: #180304;
-    border-radius: 10px;
-    border: 1px solid #2e0a10;
-    overflow: hidden;
-  }
-
-  .card-header {
-    padding: 13px 16px;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    border-bottom: 1px solid #2e0a10;
-    background: #1e0406;
-  }
-
-  .card-header .icon { font-size: 15px; }
-
-  .card-header h2 {
-    font-size: 14px;
-    font-weight: 700;
-    color: #fff;
-    letter-spacing: 0.5px;
-  }
-
-  .card-body { padding: 14px 16px; }
-
-  ul.rules {
-    list-style: none;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-  }
-
-  ul.rules li {
-    font-size: 13px;
-    color: #ccc;
-    line-height: 1.6;
-    padding-left: 16px;
-    position: relative;
-  }
-
-  ul.rules li::before {
-    content: '•';
-    color: #c0001a;
-    font-size: 18px;
-    position: absolute;
-    left: 0;
-    top: -2px;
-    line-height: 1.4;
-  }
-
-  ul.rules li strong { color: #fff; font-weight: 700; }
-
-  .sub-title {
-    font-size: 13px;
-    font-weight: 700;
-    color: #d41a30;
-    letter-spacing: 1px;
-    padding: 12px 0 8px;
-    border-bottom: 1px solid #2e0a10;
-    margin-bottom: 11px;
-    margin-top: 4px;
-  }
-
-  .sub-title:first-child { padding-top: 0; margin-top: 0; }
-
-  .note-box {
-    background: #1a0205;
-    border: 1px solid #3a0a10;
-    border-left: 3px solid #c0001a;
-    border-radius: 0 6px 6px 0;
-    padding: 9px 13px;
-    margin-top: 8px;
-    font-size: 12.5px;
-    color: #bbb;
-    line-height: 1.6;
-  }
-
-  .note-box strong { color: #ff6b6b; }
-
-  .warn-box {
-    background: #1a0a00;
-    border: 1px solid #3a1a00;
-    border-left: 3px solid #ff6600;
-    border-radius: 0 6px 6px 0;
-    padding: 9px 13px;
-    margin-top: 8px;
-    font-size: 12.5px;
-    color: #bbb;
-    line-height: 1.6;
-  }
-
-  .warn-box strong { color: #ff8844; }
-
-  .footer-note {
-    padding: 12px 16px;
-    font-size: 12px;
-    color: #777;
-    text-align: center;
-    line-height: 1.5;
-    background: #120202;
-  }
-
-  .footer-note strong { color: #999; }
-
-  .brand-bar {
-    text-align: center;
-    padding: 18px 20px 22px;
-    border-top: 1px solid #2a0a10;
-  }
-
-  .brand-name {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 16px;
-    color: #c0001a;
-    letter-spacing: 4px;
-    margin-bottom: 3px;
-  }
-
-  .brand-slogan { font-size: 11px; color: #555; letter-spacing: 1px; }
-
-  .cta-btn {
-    display: block;
-    width: 100%;
-    padding: 17px;
-    background: linear-gradient(135deg, #8a0012, #c0001a);
-    color: #fff;
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 22px;
-    letter-spacing: 5px;
-    text-align: center;
-    text-decoration: none;
-    border-radius: 4px;
-    cursor: pointer;
-    position: relative;
-    overflow: hidden;
-    transition: background 0.2s;
-    box-shadow: 0 4px 20px rgba(192,0,26,0.4);
-  }
-
-  .cta-btn::before {
-    content: '';
-    position: absolute;
-    top: 0; left: -100%;
-    width: 60%; height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.15), transparent);
-    transform: skewX(-20deg);
-    transition: left 0.4s;
-  }
-
-  .cta-btn:hover { background: linear-gradient(135deg, #c0001a, #d41a30); }
-  .cta-btn:hover::before { left: 150%; }
-
-  .banner-anim-glow {
-    position: absolute;
-    inset: 0;
-    pointer-events: none;
-    animation: pulseGlow 3s ease-in-out infinite;
-  }
-
-  .banner-scan {
-    position: absolute;
-    left: 0; right: 0;
-    height: 2px;
-    pointer-events: none;
-    animation: scanLine 2.2s linear infinite;
-  }
-
-  .particles {
-    position: absolute;
-    inset: 0;
-    pointer-events: none;
-    overflow: hidden;
-  }
-
-  .particle {
-    position: absolute;
-    bottom: -10px;
-    width: 3px; height: 3px;
-    border-radius: 50%;
-    animation: floatUp linear infinite;
-  }
-  .particle:nth-child(1) { left:8%;  animation-duration:3.8s; animation-delay:0s;   width:2px; height:2px; }
-  .particle:nth-child(2) { left:22%; animation-duration:4.5s; animation-delay:0.7s; }
-  .particle:nth-child(3) { left:38%; animation-duration:3.2s; animation-delay:1.4s; width:4px; height:4px; }
-  .particle:nth-child(4) { left:55%; animation-duration:4.8s; animation-delay:0.2s; }
-  .particle:nth-child(5) { left:70%; animation-duration:3.5s; animation-delay:1.0s; width:2px; height:2px; }
-  .particle:nth-child(6) { left:85%; animation-duration:5.0s; animation-delay:0.5s; }
-  .particle:nth-child(7) { left:48%; animation-duration:4.0s; animation-delay:1.8s; }
-
-  .banner-shimmer {
-    height: 2px;
-    background-size: 200% 100%;
-    animation: shimmerLine 1.8s linear infinite;
-  }
-
-  @keyframes glitchH1 {
-    0%   { transform: translate(0,0) skewX(0deg); text-shadow: 0 0 20px rgba(220,20,40,0.5); }
-    2%   { transform: translate(-4px,0) skewX(-3deg); text-shadow: -4px 0 #ff0033, 4px 0 #00ffff; }
-    4%   { transform: translate(4px,0) skewX(3deg); text-shadow: 4px 0 #ff0033, -4px 0 #00ffff; }
-    6%   { transform: translate(0,0) skewX(0deg); text-shadow: 0 0 20px rgba(220,20,40,0.5); }
-    100% { transform: translate(0,0) skewX(0deg); text-shadow: 0 0 20px rgba(220,20,40,0.5); }
-  }
-
-  @keyframes flickerBadge {
-    0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% { opacity: 1; }
-    20%, 24%, 55% { opacity: 0.3; }
-  }
-
-  @keyframes pulseGlow {
-    0%, 100% { opacity: 0.5; transform: scale(1); }
-    50%       { opacity: 1;   transform: scale(1.12); }
-  }
-
-  @keyframes scanLine {
-    0%   { top: -2px; opacity: 0; }
-    5%   { opacity: 1; }
-    95%  { opacity: 1; }
-    100% { top: 100%; opacity: 0; }
-  }
-
-  @keyframes floatUp {
-    0%   { transform: translateY(0) scale(1); opacity: 0; }
-    10%  { opacity: 1; }
-    90%  { opacity: 0.5; }
-    100% { transform: translateY(-180px) scale(0.2); opacity: 0; }
-  }
-
-  @keyframes shimmerLine {
-    0%   { background-position: -200% 0; }
-    100% { background-position: 200% 0; }
-  }
-
-  @keyframes scaleIn {
-    from { transform: scale(0.7); opacity: 0; }
-    to   { transform: scale(1); opacity: 1; }
-  }
-
-  @keyframes slideUp {
-    from { transform: translateY(20px); opacity: 0; }
-    to   { transform: translateY(0); opacity: 1; }
-  }
-
-  @keyframes textColorCycle {
-    0%, 100% { color: #ff3a3a; text-shadow: 0 0 16px rgba(255,50,50,0.5); }
-    50%       { color: #ff8080; text-shadow: 0 0 30px rgba(255,80,80,0.9), 0 0 60px rgba(255,0,0,0.4); }
-  }
-</style>
-
-<div class="page">
-<div class="banner">
-<div class="particles">
-<div class="particle" style="background:rgba(220,20,40,0.7);">&nbsp;</div>
-
-<div class="particle" style="background:rgba(220,20,40,0.7);">&nbsp;</div>
-
-<div class="particle" style="background:rgba(255,80,80,0.5);">&nbsp;</div>
-
-<div class="particle" style="background:rgba(220,20,40,0.7);">&nbsp;</div>
-
-<div class="particle" style="background:rgba(220,20,40,0.7);">&nbsp;</div>
-
-<div class="particle" style="background:rgba(220,20,40,0.7);">&nbsp;</div>
-
-<div class="particle" style="background:rgba(255,255,255,0.25);">&nbsp;</div>
-</div>
-
-<div class="banner-anim-glow" style="background:radial-gradient(ellipse at 50% 0%, rgba(192,0,26,0.3) 0%, transparent 65%);">&nbsp;</div>
-
-<div class="banner-scan" style="background:linear-gradient(90deg, transparent, rgba(255,50,50,0.9), transparent);">&nbsp;</div>
-
-<div class="banner-badge">🎰 Slot Kayıplarına Özel</div>
-
-<h1><span>%20</span> JEST</h1>
-
-<div class="banner-sub">Bonusu — Art Arda 3 Yatırımda Kazan</div>
-</div>
-
-<div class="banner-shimmer" style="background:linear-gradient(90deg, transparent, rgba(220,20,40,0.9), transparent);">&nbsp;</div>
-
-<div class="promo-title"><span>🎰 %20 JEST BONUSU 🎰</span></div>
-
-<div class="content">
-<div class="card">
-<div class="card-header"><span class="icon">🟥</span>
-
-<h2>Promosyon Hakkında</h2>
-</div>
-
-<div class="card-body">
-<ul class="rules">
-	<li>Bu promosyon, gün içerisinde <strong>art arda 3 defa yatırım yapmış</strong> ve kayıp yaşamış üyeler için geçerlidir.</li>
-	<li>Minimum <strong>1.000₺</strong> tutarındaki yatırımlar için geçerlidir.</li>
-	<li>Bu promosyondan <strong>günde yalnızca 1 kez</strong> yararlanabilirsiniz. Gün içerisinde çekim yapan üyeler bu promosyondan faydalanamaz.</li>
-	<li>Bu bonus yalnızca <strong>Casino (Slot)</strong> kayıplarınız için geçerlidir.
-	<div class="warn-box">⚠️ <strong>Canlı Casino</strong> ve <strong>Spor Bahisleri</strong> bu promosyon kapsamına dahil değildir.</div>
-	</li>
-	<li>Bu promosyondan kazanılabilecek <strong>maksimum tutar 5.000₺'dir.</strong></li>
-</ul>
-</div>
-</div>
-
-<div class="card">
-<div class="card-header"><span class="icon">📊</span>
-
-<h2>Bonus Nasıl Hesaplanır?</h2>
-</div>
-
-<div class="card-body">
-<ul class="rules">
-	<li>3. yatırımınızı da (kayıp bonusu dahil) kaybetmeniz durumunda <strong>canlı destek</strong> ile iletişime geçerek talep edebilirsiniz.</li>
-	<li>En yüksek <strong>3 yatırımınızın toplamı 3'e bölünerek</strong> ortalaması hesaplanır. Çıkan miktarın <strong>%20'si</strong> hesabınıza tanımlanır.
-	<div class="note-box">📌 Örnek: 3 yatırımınız 2.000₺ + 3.000₺ + 1.000₺ ise → Ortalama: 2.000₺ → Bonus: <strong>400₺</strong></div>
-	</li>
-</ul>
-</div>
-</div>
-
-<div class="card">
-<div class="card-header"><span class="icon">🎯</span>
-
-<h2>Bonus Çevrim ve Çekim</h2>
-</div>
-
-<div class="card-body">
-<div class="sub-title">🔄 Çevrim Şartı</div>
-
-<ul class="rules">
-	<li>Bonusu çekilebilir hale getirebilmek için aldığınız bonusun <strong>10 katını</strong> belirtilen oyunlarda çevirmeniz gerekmektedir.</li>
-	<li>Bonus kullanım süresi <strong>24 saattir;</strong> 24 saat içinde kullanılmayan bonuslar sistem tarafından silinir.</li>
-</ul>
-
-<div class="sub-title">💸 Çekim Limitleri</div>
-
-<ul class="rules">
-	<li>Maksimum <strong>10 katına kadar</strong> çekim yapılabilir.</li>
-	<li>Çevrim tamamlanıp tutar ana bakiyenize geçtikten sonra bu bakiye ile devam edilmesi halinde çekim yapılabilecek maksimum tutar <strong>50.000₺'dir.</strong></li>
-</ul>
-</div>
-</div>
-
-<div class="card">
-<div class="card-header"><span class="icon">⚠️</span>
-
-<h2>Önemli Kurallar</h2>
-</div>
-
-<div class="card-body">
-<ul class="rules">
-	<li>Bu bonus, üyelerimizin sitemizde <strong>keyifli vakit geçirmeleri</strong> ve eğlenmeleri amacıyla sunulmuştur.</li>
-	<li>Bonusların kötüye kullanımı veya kural dışı işlemler tespit edilirse ilgili bonuslar <strong>iptal edilir</strong> ve Ramadabet hesabınız <strong>kapatılabilir.</strong></li>
-	<li><strong>Aynı aile bireyleri</strong> ve <strong>aynı IP adresinden</strong> giriş yapan kullanıcılar bu promosyondan faydalanamaz.</li>
-</ul>
-</div>
-</div>
-
-<div class="card">
-<div class="card-header"><span class="icon">📋</span>
-
-<h2>Genel Kurallar</h2>
-</div>
-
-<div class="footer-note">Bu kurallara ek olarak, sitemizin <strong>Genel Kural ve Şartları</strong> da dahildir.</div>
-</div>
-</div>
-
-<div style="padding: 0 14px 14px;"><a class="cta-btn" href="https://service.6mhxj6tw1e.com/chatwindow.aspx?siteId=90007149&amp;planId=7a1d4f09-f100-4cf1-ac45-2e58b4f906dc" target="_blank">💬 CANLI DESTEK</a></div>
-
-<div class="brand-bar">
-<div class="brand-name">Ramadabet Official</div>
-
-<div class="brand-slogan">Gecenin Kazananı Siz Olun. Bol Şanslar!</div>
-</div>
-</div>
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>%20 Jest Bonusu | Ramadabet</title>
+
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Rajdhani:wght@400;600;700&display=swap');
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      align-items: flex-start;
+      background: #0a0000;
+      font-family: 'Rajdhani', sans-serif;
+      color: #e0e0e0;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      padding: 0;
+    }
+
+    .page {
+      margin: 0 auto;
+      width: 100%;
+      max-width: 560px;
+      background: #100202;
+    }
+
+    /* =========================
+       BANNER
+    ========================= */
+
+    .banner {
+      background: linear-gradient(
+        135deg,
+        #0a0000 0%,
+        #1c0005 50%,
+        #0a0000 100%
+      );
+
+      padding: 28px 20px 22px;
+      text-align: center;
+      border-bottom: 2px solid #3a0a10;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .banner::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(
+        ellipse at 50% 0%,
+        rgba(192,0,26,0.18) 0%,
+        transparent 65%
+      );
+      pointer-events: none;
+    }
+
+    .banner-badge {
+      display: inline-block;
+      background: rgba(192,0,26,0.15);
+      border: 1px solid rgba(192,0,26,0.4);
+      border-radius: 4px;
+      padding: 4px 14px;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 3px;
+      color: #ff6b6b;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+
+      animation:
+        flickerBadge 4s linear infinite,
+        slideUp 0.5s ease both;
+    }
+
+    .banner h1 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 52px;
+      line-height: 1;
+      letter-spacing: 2px;
+      color: #fff;
+      margin-bottom: 4px;
+
+      text-shadow: 0 0 20px rgba(220,20,40,0.3);
+
+      animation:
+        glitchH1 5s ease-in-out infinite,
+        scaleIn 0.6s ease 0.1s both;
+    }
+
+    .banner h1 span {
+      color: #ff3a3a;
+      text-shadow: 0 0 16px rgba(255,50,50,0.5);
+      animation: textColorCycle 2.5s ease-in-out infinite;
+    }
+
+    .banner-sub {
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 3px;
+      color: #aaa;
+      text-transform: uppercase;
+      animation: slideUp 0.7s ease 0.3s both;
+      display: inline-block;
+    }
+
+    /* =========================
+       PARTICLES
+    ========================= */
+
+    .particles {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      overflow: hidden;
+    }
+
+    .particle {
+      position: absolute;
+      bottom: -10px;
+      width: 3px;
+      height: 3px;
+      border-radius: 50%;
+      animation: floatUp linear infinite;
+    }
+
+    .particle:nth-child(1) {
+      left: 8%;
+      animation-duration: 3.8s;
+      animation-delay: 0s;
+      width: 2px;
+      height: 2px;
+    }
+
+    .particle:nth-child(2) {
+      left: 22%;
+      animation-duration: 4.5s;
+      animation-delay: 0.7s;
+    }
+
+    .particle:nth-child(3) {
+      left: 38%;
+      animation-duration: 3.2s;
+      animation-delay: 1.4s;
+      width: 4px;
+      height: 4px;
+    }
+
+    .particle:nth-child(4) {
+      left: 55%;
+      animation-duration: 4.8s;
+      animation-delay: 0.2s;
+    }
+
+    .particle:nth-child(5) {
+      left: 70%;
+      animation-duration: 3.5s;
+      animation-delay: 1s;
+      width: 2px;
+      height: 2px;
+    }
+
+    .particle:nth-child(6) {
+      left: 85%;
+      animation-duration: 5s;
+      animation-delay: 0.5s;
+    }
+
+    .particle:nth-child(7) {
+      left: 48%;
+      animation-duration: 4s;
+      animation-delay: 1.8s;
+    }
+
+    .banner-anim-glow {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      animation: pulseGlow 3s ease-in-out infinite;
+    }
+
+    .banner-scan {
+      position: absolute;
+      left: 0;
+      right: 0;
+      height: 2px;
+      pointer-events: none;
+      animation: scanLine 2.2s linear infinite;
+    }
+
+    .banner-shimmer {
+      height: 2px;
+      background-size: 200% 100%;
+      animation: shimmerLine 1.8s linear infinite;
+    }
+
+    /* =========================
+       PROMO TITLE
+    ========================= */
+
+    .promo-title {
+      background: #0d0000;
+      padding: 14px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      border-bottom: 1px solid #2a0a10;
+    }
+
+    .promo-title span {
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      color: #c0001a;
+      text-transform: uppercase;
+      text-align: center;
+    }
+
+    /* =========================
+       CONTENT
+    ========================= */
+
+    .content {
+      padding: 14px 14px 30px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .card {
+      background: #180304;
+      border-radius: 10px;
+      border: 1px solid #2e0a10;
+      overflow: hidden;
+    }
+
+    .card-header {
+      padding: 13px 16px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      border-bottom: 1px solid #2e0a10;
+      background: #1e0406;
+    }
+
+    .card-header .icon {
+      font-size: 15px;
+    }
+
+    .card-header h2 {
+      font-size: 14px;
+      font-weight: 700;
+      color: #fff;
+      letter-spacing: 0.5px;
+    }
+
+    .card-body {
+      padding: 14px 16px;
+    }
+
+    /* =========================
+       RULES
+    ========================= */
+
+    ul.rules {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    ul.rules li {
+      font-size: 13px;
+      color: #ccc;
+      line-height: 1.6;
+      padding-left: 16px;
+      position: relative;
+    }
+
+    ul.rules li::before {
+      content: '•';
+      color: #c0001a;
+      font-size: 18px;
+      position: absolute;
+      left: 0;
+      top: -2px;
+      line-height: 1.4;
+    }
+
+    ul.rules li strong {
+      color: #fff;
+      font-weight: 700;
+    }
+
+    /* =========================
+       SUB TITLE
+    ========================= */
+
+    .sub-title {
+      font-size: 13px;
+      font-weight: 700;
+      color: #d41a30;
+      letter-spacing: 1px;
+      padding: 12px 0 8px;
+      border-bottom: 1px solid #2e0a10;
+      margin-bottom: 11px;
+      margin-top: 4px;
+    }
+
+    .sub-title:first-child {
+      padding-top: 0;
+      margin-top: 0;
+    }
+
+    /* =========================
+       NOTE / WARNING
+    ========================= */
+
+    .note-box {
+      background: #1a0205;
+      border: 1px solid #3a0a10;
+      border-left: 3px solid #c0001a;
+      border-radius: 0 6px 6px 0;
+      padding: 9px 13px;
+      margin-top: 8px;
+      font-size: 12.5px;
+      color: #bbb;
+      line-height: 1.6;
+    }
+
+    .note-box strong {
+      color: #ff6b6b;
+    }
+
+    .warn-box {
+      background: #1a0a00;
+      border: 1px solid #3a1a00;
+      border-left: 3px solid #ff6600;
+      border-radius: 0 6px 6px 0;
+      padding: 9px 13px;
+      margin-top: 8px;
+      font-size: 12.5px;
+      color: #bbb;
+      line-height: 1.6;
+    }
+
+    .warn-box strong {
+      color: #ff8844;
+    }
+
+    /* =========================
+       FOOTER
+    ========================= */
+
+    .footer-note {
+      padding: 12px 16px;
+      font-size: 12px;
+      color: #777;
+      text-align: center;
+      line-height: 1.5;
+      background: #120202;
+    }
+
+    .footer-note strong {
+      color: #999;
+    }
+
+    .brand-bar {
+      text-align: center;
+      padding: 18px 20px 22px;
+      border-top: 1px solid #2a0a10;
+    }
+
+    .brand-name {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 16px;
+      color: #c0001a;
+      letter-spacing: 4px;
+      margin-bottom: 3px;
+    }
+
+    .brand-slogan {
+      font-size: 11px;
+      color: #555;
+      letter-spacing: 1px;
+    }
+
+    /* =========================
+       CTA
+    ========================= */
+
+    .cta-wrapper {
+      padding: 0 14px 14px;
+    }
+
+    .cta-btn {
+      display: block;
+      width: 100%;
+      padding: 17px;
+
+      background: linear-gradient(
+        135deg,
+        #8a0012,
+        #c0001a
+      );
+
+      color: #fff;
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 22px;
+      letter-spacing: 5px;
+      text-align: center;
+      text-decoration: none;
+      border-radius: 4px;
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+      transition: background 0.2s;
+
+      box-shadow: 0 4px 20px rgba(192,0,26,0.4);
+    }
+
+    .cta-btn::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 60%;
+      height: 100%;
+
+      background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255,255,255,0.15),
+        transparent
+      );
+
+      transform: skewX(-20deg);
+      transition: left 0.4s;
+    }
+
+    .cta-btn:hover {
+      background: linear-gradient(
+        135deg,
+        #c0001a,
+        #d41a30
+      );
+    }
+
+    .cta-btn:hover::before {
+      left: 150%;
+    }
+
+    /* =========================
+       ANIMATIONS
+    ========================= */
+
+    @keyframes glitchH1 {
+      0% {
+        transform: translate(0,0) skewX(0deg);
+        text-shadow: 0 0 20px rgba(220,20,40,0.5);
+      }
+
+      2% {
+        transform: translate(-4px,0) skewX(-3deg);
+        text-shadow: -4px 0 #ff0033, 4px 0 #00ffff;
+      }
+
+      4% {
+        transform: translate(4px,0) skewX(3deg);
+        text-shadow: 4px 0 #ff0033, -4px 0 #00ffff;
+      }
+
+      6% {
+        transform: translate(0,0) skewX(0deg);
+        text-shadow: 0 0 20px rgba(220,20,40,0.5);
+      }
+
+      100% {
+        transform: translate(0,0) skewX(0deg);
+        text-shadow: 0 0 20px rgba(220,20,40,0.5);
+      }
+    }
+
+    @keyframes flickerBadge {
+      0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% {
+        opacity: 1;
+      }
+
+      20%, 24%, 55% {
+        opacity: 0.3;
+      }
+    }
+
+    @keyframes pulseGlow {
+      0%, 100% {
+        opacity: 0.5;
+        transform: scale(1);
+      }
+
+      50% {
+        opacity: 1;
+        transform: scale(1.12);
+      }
+    }
+
+    @keyframes scanLine {
+      0% {
+        top: -2px;
+        opacity: 0;
+      }
+
+      5% {
+        opacity: 1;
+      }
+
+      95% {
+        opacity: 1;
+      }
+
+      100% {
+        top: 100%;
+        opacity: 0;
+      }
+    }
+
+    @keyframes floatUp {
+      0% {
+        transform: translateY(0) scale(1);
+        opacity: 0;
+      }
+
+      10% {
+        opacity: 1;
+      }
+
+      90% {
+        opacity: 0.5;
+      }
+
+      100% {
+        transform: translateY(-180px) scale(0.2);
+        opacity: 0;
+      }
+    }
+
+    @keyframes shimmerLine {
+      0% {
+        background-position: -200% 0;
+      }
+
+      100% {
+        background-position: 200% 0;
+      }
+    }
+
+    @keyframes scaleIn {
+      from {
+        transform: scale(0.7);
+        opacity: 0;
+      }
+
+      to {
+        transform: scale(1);
+        opacity: 1;
+      }
+    }
+
+    @keyframes slideUp {
+      from {
+        transform: translateY(20px);
+        opacity: 0;
+      }
+
+      to {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+
+    @keyframes textColorCycle {
+      0%, 100% {
+        color: #ff3a3a;
+        text-shadow: 0 0 16px rgba(255,50,50,0.5);
+      }
+
+      50% {
+        color: #ff8080;
+        text-shadow:
+          0 0 30px rgba(255,80,80,0.9),
+          0 0 60px rgba(255,0,0,0.4);
+      }
+    }
+
+    /* =========================
+       MOBILE
+    ========================= */
+
+    @media (max-width: 560px) {
+      .banner {
+        padding: 25px 16px 20px;
+      }
+
+      .banner h1 {
+        font-size: 46px;
+      }
+
+      .banner-sub {
+        font-size: 11px;
+        letter-spacing: 2px;
+      }
+
+      .promo-title span {
+        font-size: 12px;
+      }
+
+      .content {
+        padding: 12px 10px 25px;
+      }
+
+      .card-header {
+        padding: 12px 14px;
+      }
+
+      .card-body {
+        padding: 13px 14px;
+      }
+
+      ul.rules li {
+        font-size: 12.5px;
+      }
+
+      .cta-wrapper {
+        padding: 0 10px 12px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <main class="page">
+
+    <!-- =========================
+         BANNER
+    ========================== -->
+
+    <section class="banner">
+
+      <div class="particles">
+
+        <div
+          class="particle"
+          style="background:rgba(220,20,40,0.7);">
+        </div>
+
+        <div
+          class="particle"
+          style="background:rgba(220,20,40,0.7);">
+        </div>
+
+        <div
+          class="particle"
+          style="background:rgba(255,80,80,0.5);">
+        </div>
+
+        <div
+          class="particle"
+          style="background:rgba(220,20,40,0.7);">
+        </div>
+
+        <div
+          class="particle"
+          style="background:rgba(220,20,40,0.7);">
+        </div>
+
+        <div
+          class="particle"
+          style="background:rgba(220,20,40,0.7);">
+        </div>
+
+        <div
+          class="particle"
+          style="background:rgba(255,255,255,0.25);">
+        </div>
+
+      </div>
+
+      <div
+        class="banner-anim-glow"
+        style="background:radial-gradient(ellipse at 50% 0%, rgba(192,0,26,0.3) 0%, transparent 65%);">
+      </div>
+
+      <div
+        class="banner-scan"
+        style="background:linear-gradient(90deg, transparent, rgba(255,50,50,0.9), transparent);">
+      </div>
+
+      <div class="banner-badge">
+        🎰 Slot Kayıplarına Özel
+      </div>
+
+      <h1>
+        <span>%20</span> JEST
+      </h1>
+
+      <div class="banner-sub">
+        Bonusu — Art Arda 3 Yatırımda Kazan
+      </div>
+
+    </section>
+
+    <!-- SHIMMER -->
+
+    <div
+      class="banner-shimmer"
+      style="background:linear-gradient(90deg, transparent, rgba(220,20,40,0.9), transparent);">
+    </div>
+
+    <!-- TITLE -->
+
+    <div class="promo-title">
+      <span>🎰 %20 JEST BONUSU 🎰</span>
+    </div>
+
+    <!-- =========================
+         CONTENT
+    ========================== -->
+
+    <section class="content">
+
+      <!-- PROMOSYON HAKKINDA -->
+
+      <article class="card">
+
+        <div class="card-header">
+          <span class="icon">🟥</span>
+          <h2>Promosyon Hakkında</h2>
+        </div>
+
+        <div class="card-body">
+
+          <ul class="rules">
+
+            <li>
+              Bu promosyon, gün içerisinde
+              <strong>art arda 3 defa yatırım yapmış</strong>
+              ve kayıp yaşamış üyeler için geçerlidir.
+            </li>
+
+            <li>
+              Minimum
+              <strong>1.000₺</strong>
+              tutarındaki yatırımlar için geçerlidir.
+            </li>
+
+            <li>
+              Bu promosyondan
+              <strong>günde yalnızca 1 kez</strong>
+              yararlanabilirsiniz. Gün içerisinde çekim yapan üyeler
+              bu promosyondan faydalanamaz.
+            </li>
+
+            <li>
+              Bu bonus yalnızca
+              <strong>Casino (Slot)</strong>
+              kayıplarınız için geçerlidir.
+
+              <div class="warn-box">
+                ⚠️
+                <strong>Canlı Casino</strong>
+                ve
+                <strong>Spor Bahisleri</strong>
+                bu promosyon kapsamına dahil değildir.
+              </div>
+            </li>
+
+            <li>
+              Bu promosyondan kazanılabilecek
+              <strong>maksimum tutar 5.000₺'dir.</strong>
+            </li>
+
+          </ul>
+
+        </div>
+      </article>
+
+      <!-- BONUS HESAPLAMA -->
+
+      <article class="card">
+
+        <div class="card-header">
+          <span class="icon">📊</span>
+          <h2>Bonus Nasıl Hesaplanır?</h2>
+        </div>
+
+        <div class="card-body">
+
+          <ul class="rules">
+
+            <li>
+              3. yatırımınızı da (kayıp bonusu dahil) kaybetmeniz
+              durumunda <strong>canlı destek</strong> ile iletişime
+              geçerek talep edebilirsiniz.
+            </li>
+
+            <li>
+              En yüksek
+              <strong>3 yatırımınızın toplamı 3'e bölünerek</strong>
+              ortalaması hesaplanır. Çıkan miktarın
+              <strong>%20'si</strong>
+              hesabınıza tanımlanır.
+
+              <div class="note-box">
+                📌 Örnek: 3 yatırımınız
+                2.000₺ + 3.000₺ + 1.000₺ ise
+                → Ortalama: 2.000₺
+                → Bonus:
+                <strong>400₺</strong>
+              </div>
+
+            </li>
+
+          </ul>
+
+        </div>
+      </article>
+
+      <!-- ÇEVRİM VE ÇEKİM -->
+
+      <article class="card">
+
+        <div class="card-header">
+          <span class="icon">🎯</span>
+          <h2>Bonus Çevrim ve Çekim</h2>
+        </div>
+
+        <div class="card-body">
+
+          <div class="sub-title">
+            🔄 Çevrim Şartı
+          </div>
+
+          <ul class="rules">
+
+            <li>
+              Bonusu çekilebilir hale getirebilmek için aldığınız
+              bonusun <strong>10 katını</strong> belirtilen oyunlarda
+              çevirmeniz gerekmektedir.
+            </li>
+
+            <li>
+              Bonus kullanım süresi
+              <strong>24 saattir;</strong>
+              24 saat içinde kullanılmayan bonuslar sistem tarafından
+              silinir.
+            </li>
+
+          </ul>
+
+          <div class="sub-title">
+            💸 Çekim Limitleri
+          </div>
+
+          <ul class="rules">
+
+            <li>
+              Maksimum
+              <strong>10 katına kadar</strong>
+              çekim yapılabilir.
+            </li>
+
+            <li>
+              Çevrim tamamlanıp tutar ana bakiyenize geçtikten sonra
+              bu bakiye ile devam edilmesi halinde çekim yapılabilecek
+              maksimum tutar
+              <strong>50.000₺'dir.</strong>
+            </li>
+
+          </ul>
+
+        </div>
+      </article>
+
+      <!-- ÖNEMLİ KURALLAR -->
+
+      <article class="card">
+
+        <div class="card-header">
+          <span class="icon">⚠️</span>
+          <h2>Önemli Kurallar</h2>
+        </div>
+
+        <div class="card-body">
+
+          <ul class="rules">
+
+            <li>
+              Bu bonus, üyelerimizin sitemizde
+              <strong>keyifli vakit geçirmeleri</strong>
+              ve eğlenmeleri amacıyla sunulmuştur.
+            </li>
+
+            <li>
+              Bonusların kötüye kullanımı veya kural dışı işlemler
+              tespit edilirse ilgili bonuslar
+              <strong>iptal edilir</strong>
+              ve Ramadabet hesabınız
+              <strong>kapatılabilir.</strong>
+            </li>
+
+            <li>
+              <strong>Aynı aile bireyleri</strong>
+              ve
+              <strong>aynı IP adresinden</strong>
+              giriş yapan kullanıcılar bu promosyondan faydalanamaz.
+            </li>
+
+          </ul>
+
+        </div>
+      </article>
+
+      <!-- GENEL KURALLAR -->
+
+      <article class="card">
+
+        <div class="card-header">
+          <span class="icon">📋</span>
+          <h2>Genel Kurallar</h2>
+        </div>
+
+        <div class="footer-note">
+          Bu kurallara ek olarak, sitemizin
+          <strong>Genel Kural ve Şartları</strong>
+          da dahildir.
+        </div>
+
+      </article>
+
+    </section>
+
+    <!-- =========================
+         LIVE SUPPORT
+    ========================== -->
+
+    <div class="cta-wrapper">
+
+      <a
+        class="cta-btn"
+        href="https://service.6mhxj6tw1e.com/chatwindow.aspx?siteId=90007149&amp;planId=7a1d4f09-f100-4cf1-ac45-2e58b4f906dc"
+        target="_blank"
+        rel="noopener noreferrer">
+        💬 CANLI DESTEK
+      </a>
+
+    </div>
+
+    <!-- =========================
+         BRAND
+    ========================== -->
+
+    <footer class="brand-bar">
+
+      <div class="brand-name">
+        Ramadabet Official
+      </div>
+
+      <div class="brand-slogan">
+        Gecenin Kazananı Siz Olun. Bol Şanslar!
+      </div>
+
+    </footer>
+
+  </main>
+
+</body>
+</html>
